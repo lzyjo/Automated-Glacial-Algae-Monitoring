@@ -1,6 +1,6 @@
 # Automated Glacial Algae Monitoring
 
-![Automated Glacial Algae Monitoring Banner](media\image-1.png)
+![Automated Glacial Algae Monitoring Banner](media/image-1.png)
 
 > ⚠️ **Active Research Project**
 > 
