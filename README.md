@@ -185,8 +185,70 @@ python train.py --model_name faster_rcnn
 ### 6. Evaluate Performance
 
 ```bash
-python evaluate.py --model /path/to/model --data /path/to/dataset --visualize True
+python eval_regression.py `
+--checkpoint '<checkpoint_file.pth>' `
+--model_name '<model_name>' ` #resnet18, densenet121
+--data_folder '<image_folder_path>' `
+--num_classes <num_classes> `
+--results_dir '<result_output_folder_path>' `
+
+# if using pre-trained, add --pretrained `
+# if want to define optimizer, add --optimizer <optimizer> else default is 'sgd'
 ```
+
+Otherwise, you can load and evaluate your own trained models using the same command above, but with your own checkpoint file.
+
+Note that your data_folder format must match VOC format (test/train/val)
+
+
+### 7. Inference: Using pre-trained detectors and counters
+You can use pre-trained detectors and counters by downloading and loading the revelant checkpoints below:
+
+Detectors:
+- [Faster R-CNN checkpoint](https://drive.google.com/file/d/1gf3AM6cUvYnvMyLhbLwZvFsmediMmRRA/view?usp=sharing)
+- [RetinaNet checkpoint](https://drive.google.com/file/d/1oZJxOv-OczhhZnJUG3PxGoj3peacOrUf/view?usp=sharing)
+- [YOLOv10 checkpoint](https://drive.google.com/file/d/1gf3AM6cUvYnvMyLhbLwZvFsmediMmRRA/view?usp=sharing)
+
+Counters
+- [DenseNet-121 checkpoint](https://drive.google.com/file/d/1wqkOqYS4tyQweHj-2UP6rjmAO8b4sNbt/view?usp=sharing)
+- [ResNet-18 checkpoint](https://drive.google.com/file/d/1Z1DigzFP1kdw03jjKb3kAUQTOpaHfpD3/view?usp=sharing)
+
+----
+
+
+The following model (names for input into the script) are supported for inference:
+- fasterrcnn_resnet50_fpn
+- retinanet_resnet50_fpn
+- resnet18
+- densenet121
+
+YOLO checkpoints can only be used directly with the `ultralytics` library.
+
+```bash
+python detect.py `
+    --checkpoint_path '<checkpoint_file.pth>' `
+    --img_path '<image_file.tif>' `
+    --ground_truth '<ground_truth_flag>' ` #False or None, True, <Specify_path>
+    --model_type '<model_type>' ` # detector, counter
+    --model_name 'resnet18' `
+    --pretrained `
+    --regression ` #Add flag if using counter model
+    --overlay ` #Add flag if you want to overlay the detection results on the original image
+```
+
+Default code settings:
+```bash
+python detect.py `
+    --checkpoint_path '<checkpoint_file.pth>' `
+    --img_path '<image_file.tif>' `
+    --ground_truth 'False' `
+    --model_type 'counter' `
+    --model_name 'densenet121' `
+    --pretrained `
+    --regression `
+    --overlay `
+```
+
 
 ## Pipeline Architecture
 
