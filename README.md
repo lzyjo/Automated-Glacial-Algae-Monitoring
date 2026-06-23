@@ -17,6 +17,13 @@ A comprehensive modular pipeline for automated detection and classification of g
 
 This project is part of the MRes research of the sole contributor @lzyjo at the University of Bristol, focused on developing automated methods for monitoring glacial algae communities in the cryosphere. Glacial algae play a crucial role in glacier surface albedo dynamics and biogeochemical processes, yet their monitoring remains labor-intensive and time-consuming. This pipeline automates the detection and classification of glacial algae cells, enabling large-scale quantitative analysis of microscopy images.
 
+<p align="center">
+    <img src="media/Detection_withcounts.png" alt="Detection" width="47.8%" />
+    <img src="media/Detection_4_highdensity_withcounts.png" alt="Detection in crowded scenes" width="48%" />
+</p>
+
+
+
 ### Why Automated Glacial Algae Monitoring?
 
 - **Manual counting is impractical**: Analyzing microscopy images manually is extremely time-consuming
@@ -29,19 +36,21 @@ This project is part of the MRes research of the sole contributor @lzyjo at the 
 - 🔬 **Data Pre-processing**: Robust pipeline for handling light microscopy images and annotation formats, including dataset structure (VOC and YOLO)
 - 🔄 **Data Augmentation**: Comprehensive and modular data augmentation pipeline 
 - 🏷️ **Label Conversion**: Flexible conversion between annotation formats (VOC and YOLO) and different levels of annotation detail 
-- 🤖 **Multi-Model Training**: Support for state-of-the-art object detection architectures
+- 🤖 **Model Training**: Support for state-of-the-art object detection and regression architectures
 - 📊 **Performance Tracking**: Automated logging of training metrics and losses for for Excel and TensorBoard
 - 📈 **Visualization**: Comprehensive and modular pipeline for performance plots and model comparison tools
 - ⚡ **Modular Design**: Easy to extend and customize for different datasets and models
 
 ## Supported Models
 
-| Model | Framework | Key Features |
-|-------|-----------|-------------|
-| **Faster R-CNN** | PyTorch | Two-stage detector, Region Proposal Networks (RPNs) |
-| **RetinaNet** | PyTorch | Single-stage, Focal Loss for class imbalance |
-| **YOLO v5** | Ultralytics | Single-stage, high speed and accuracy |
-| **YOLO v10** | Ultralytics | Latest YOLO architecture, improved speed/accuracy trade-off |
+| Model Type | Model | Framework | Key Features |
+|------------|-------|-----------|-------------|
+| Detection | **Faster R-CNN** | PyTorch | Region Proposal Networks (RPNs) |
+| Detection | **RetinaNet** | PyTorch | Focal Loss for class imbalance |
+| Detection | **YOLO v10** | Ultralytics | NMS-free inference for improved speed/accuracy trade-off |
+| Regression | **ResNet** | PyTorch | Deep residual networks for feature extraction |
+| Regression | **DenseNet** | PyTorch | Dense connections for efficient feature propagation |
+
 
 ## Table of Contents
 
@@ -69,10 +78,11 @@ This project is part of the MRes research of the sole contributor @lzyjo at the 
 We strongly recommend using a virtual environment to avoid dependency conflicts:
 
 ```bash
-# Create virtual environment
+# Create virtual environment------------
 python -m venv .venv
 
-# Activate virtual environment
+# Activate virtual environment---------
+
 # On Windows:
 .venv\Scripts\activate
 # On Linux/Mac:
@@ -105,7 +115,6 @@ pip install pycocotools tensorboard tifffile torchmetrics scikit-learn scipy Pil
 |---------|---------|
 | torch, torchvision, pytorch-lightning | Deep learning framework |
 | ultralytics | YOLO models |
-| pycocotools | - |
 | torchmetrics | Evaluation metrics |
 | tensorboard | Training visualization |
 | scikit-learn | ML utilities and metrics |
@@ -142,6 +151,7 @@ Organize your microscopy images and annotations following the naming convention:
 python data_pre-processing.py  --split True --datasets_to_use Greenland_24_July_5,Mort_Sept_24_mA 
 ```
 
+Set split to True if you want to split the dataset into train/val/test, otherwise set to False. The script will automatically create the following folder structure
 
 ### 3. Convert Annotations (VOC -> YOLO or YOLO -> VOC)
 
@@ -164,6 +174,7 @@ python annotation_level_conversion.py  --from_level species_and_cellcount --to_l
 ```bash
 python label_conversion.py  --from_format VOC --to_format YOLO --model_type classifier
 ```
+
 
 ### 4. Data Augmentation (Optional)
 
@@ -305,6 +316,10 @@ The pipeline accepts annotations using:
 - **FIJI** (Fiji Is Just ImageJ)
 
 which gives you VOC formatted .xmls 
+
+
+## Concepts 
+
 
 
 ## Model Training
