@@ -1,0 +1,63 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "Automated Glacial Algae Monitoring"
+version = "0.1.0"
+dependencies = [
+    "matplotlib",
+    "numpy",
+    "opencv-python",
+    "pandas",
+    "Pillow",
+    "pycocotools",
+    "pytorch-lightning",
+    "PyYAML",
+    "scikit-learn",
+    "scipy",
+    "tensorboard",
+    "tifffile",
+    "torch",
+    "torchmetrics",
+    "torchvision",
+    "tqdm",
+    "ultralytics",
+]
+
+authors = [
+    {name = "Joey Lim", email = "lmzjo@gmail.com"}
+    ]
+maintainers = [
+{name = "Joey Lim", email = "lmzjo@gmail.com"}
+        ]
+
+description = "Detection, classification and enumeration of glacial algae cells."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "GLPv3"
+keywords = ["object detection", "image classification", "glacial algae", "algal bloom", "ecology"]
+
+[project.optional-dependencies]
+gui = [""]
+cli = [""]
+
+
+[project.urls]
+Homepage = 
+Documentation =
+Repository = 
+Changelog =
+
+
+[project.scripts]
+AGAM = "AGAM.cli:main"
+
+[project.gui-scripts]
+AGAM-gui = "AGAM:main_gui"
+
+
+[tool.setuptools.packages.find]
+where = ["src"]
+py-modules = []
+
