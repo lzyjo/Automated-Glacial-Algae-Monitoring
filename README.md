@@ -33,13 +33,13 @@ This project is part of the MRes research of the sole contributor @lzyjo at the 
 
 ## Key Features
 
-- 🔬 **Data Pre-processing**: Robust pipeline for handling light microscopy images and annotation formats, including dataset structure (VOC and YOLO)
-- 🔄 **Data Augmentation**: Comprehensive and modular data augmentation pipeline 
-- 🏷️ **Label Conversion**: Flexible conversion between annotation formats (VOC and YOLO) and different levels of annotation detail 
-- 🤖 **Model Training**: Support for state-of-the-art object detection and regression architectures
-- 📊 **Performance Tracking**: Automated logging of training metrics and losses for for Excel and TensorBoard
-- 📈 **Visualization**: Comprehensive and modular pipeline for performance plots and model comparison tools
-- ⚡ **Modular Design**: Easy to extend and customize for different datasets and models
+- **Data Pre-processing**: Robust pipeline for handling light microscopy images and annotation formats, including dataset structure (VOC and YOLO)
+- **Data Augmentation**: Comprehensive and modular data augmentation pipeline 
+- **Label Conversion**: Flexible conversion between annotation formats (VOC and YOLO) and different levels of annotation detail 
+- **Model Training**: Support for state-of-the-art object detection and regression architectures
+- **Performance Tracking**: Automated logging of training metrics and losses for for Excel and TensorBoard
+- **Visualization**: Comprehensive and modular pipeline for performance plots and model comparison tools
+- **Modular Design**: Easy to extend and customize for different datasets and models
 
 ## Supported Models
 
@@ -53,7 +53,7 @@ This project is part of the MRes research of the sole contributor @lzyjo at the 
 
 
 ## Documentation (Installation & Usage)
-Please refer to the [documentation](docs/README.md) for detailed installation instructions, usage examples, and configuration options.
+Please refer to the [documentation](documentation.md) for detailed installation instructions, usage examples, and configuration options.
 
 ## Contributing
 
